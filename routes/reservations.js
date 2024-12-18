@@ -2,14 +2,15 @@ const express = require("express");
 const { verifyJwtToken } = require("../middleware/jwt.js");
 const { getStripePublishableKey, createPaymentIntent, newReservation, getAllReservations, getAuthorsReservations } = require("../controllers/reservationController.js");
 const router = express.Router();
+const reservationController = require('../controllers/reservationController');
 
 router.use(express.json())
 
 router.get("/config", getStripePublishableKey)
-router.get("/get_author_reservations", verifyJwtToken, getAuthorsReservations)
+router.get("/getauthorreservations", verifyJwtToken, getAuthorsReservations)
 
-router.post("/get_reservations", getAllReservations)
-router.post("/create_payment_intent", createPaymentIntent)
+router.post("/getreservations", reservationController.getAllReservations)
+router.post("/createpaymentintent", reservationController.createPaymentIntent)
 router.post("/booking", verifyJwtToken, newReservation)
 
 

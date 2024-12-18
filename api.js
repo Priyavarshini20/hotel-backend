@@ -63,8 +63,8 @@ app.use(cookieParser());
 app.use("/api/v1", authRoute);
 app.use("/api/v1", houseRoute);
 app.use("/api/v1", reservationsRoute);
-
-
+//https://hotel-backend-5f4y.onrender.com/api/v1/getalllisting
+//http://localhost:5001/api/v1/getalllisting
 //Error Handler Middleware 
 app.use((err, req, res, next)=>{
 
