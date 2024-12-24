@@ -2,9 +2,9 @@ const express = require("express");
 const mongoose = require("mongoose")
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
-const authRoute = require("./routes/auth.js")
-const houseRoute = require("./routes/house.js")
-const reservationsRoute = require("./routes/reservations.js")
+const authRouter = require("./routes/authRoutes.js")
+const houseRouter = require("./routes/houseRoutes.js")
+const reservationsRouter = require("./routes/reservationsRoutes.js")
 
 require('dotenv').config();
 
@@ -12,7 +12,7 @@ require('dotenv').config();
 
 const app = express();
 app.use(cors({
-    origin:process.env.client_url,
+    origin:"*",
     credentials:true
 }))
 
@@ -60,9 +60,9 @@ app.get("/", (req, res)=>{
 app.use(express.json())
 app.use(cookieParser());
 
-app.use("/api/v1", authRoute);
-app.use("/api/v1", houseRoute);
-app.use("/api/v1", reservationsRoute);
+app.use("/api/v1/routes", authRouter);
+app.use("/api/v1/routes", houseRouter);
+app.use("/api/v1/routes", reservationsRouter);
 //https://hotel-backend-5f4y.onrender.com/api/v1/getalllisting
 //http://localhost:5001/api/v1/getalllisting
 //Error Handler Middleware 
@@ -87,3 +87,4 @@ app.listen(5001,async ()=> {
     await connect();
     console.log("Connected to Backend!")
 })
+module.exports=app;
