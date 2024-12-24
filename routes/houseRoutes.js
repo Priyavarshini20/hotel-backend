@@ -5,7 +5,7 @@ const houseRouter = express.Router();
 const houseController = require('../controllers/houseController.js');
 //router.use(express.json())
 
-houseRouter.get("/getalllisting", auth.isAuthenticated, houseController.getAllListing);
+houseRouter.get("/getalllisting", verifyJwtToken, houseController.getAllListing);
 
 houseRouter.post("/roomdetails",houseController.getOneListing)
 houseRouter.post("/getlistingwithcat", houseController.getListingDataWithCat)
